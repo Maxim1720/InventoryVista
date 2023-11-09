@@ -1,0 +1,17 @@
+###
+POST http://localhost:8080/ware-houses
+Content-Type: application/json
+
+{
+  "location": "USA"
+}
+
+###
+GET http://localhost:8080/ware-houses
+
+
+###
+GET http://localhost:8080/ware-houses/1
+
+###
+DELETE http://localhost:8080/ware-houses/1

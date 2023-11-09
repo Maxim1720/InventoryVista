@@ -1,0 +1,24 @@
+###
+POST http://localhost:8080/products
+Content-Type: application/json
+
+{
+    "name": "Свинина",
+    "description": "Свиное мясо ням-ням вкусное",
+    "quantity": 5,
+    "expirationDate": "2023-12-12T12:12:12.123"
+}
+
+
+###
+GET http://localhost:8080/products
+
+
+###
+GET http://localhost:8080/products?count
+
+###
+GET http://localhost:8080/products/1
+
+###
+DELETE http://localhost:8080/products/1

@@ -6,12 +6,22 @@ class ItemFinder{
 
     async getById(id){
         return await fetch(this.url + `/${id}`)
-            .then(resp=>resp.json());
+            .then(resp=>{
+                if(!resp.ok){
+                    throw new Error(`${resp.status} ${':' && resp.statusText}`);
+                }
+                return resp.json();
+            })
     }
 
     async getAll(){
         return await fetch(this.url)
-            .then(resp=>resp.json())
+            .then(resp=>{
+                if(!resp.ok){
+                    throw new Error(`${resp.status} ${':' && resp.statusText}`);
+                }
+                return resp.json()
+            })
     }
 
 }

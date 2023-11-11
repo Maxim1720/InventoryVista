@@ -108,6 +108,9 @@ class ProductPage extends React.Component{
         window.location.replace(window.location.href+'/update');
     }
 
+    onClickHistory = (e) =>{
+        window.location.replace(window.location.href+'/history');
+    }
     render() {
 
         const {isLoaded, data, storageCondition} = this.state;
@@ -144,6 +147,7 @@ class ProductPage extends React.Component{
                             console.log("removing...");
                             this.onRemove(e);
                         }}>Удалить</button>
+                        <button className="btn btn-info" onClick={this.onClickHistory}>История</button>
                         <button className="btn btn-primary" onClick={this.onUpdate}>Редактировать</button>
                     </div>
                 </div>

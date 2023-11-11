@@ -3,10 +3,16 @@ import "bootstrap/dist/css/bootstrap.css";
 import Navigation from "./Navigation";
 
 
-const Header = (isAuthorized)=>{
-    return (
-        <Navigation isAuthorized={isAuthorized}/>
-    );
+class Header extends React.Component{
+
+    constructor(props) {
+        super(props);
+    }
+    render() {
+        return(
+             <Navigation/>
+        );
+    }
 }
 
 

@@ -1,4 +1,4 @@
-package ru.sasha.inventoryvista.service.crud.product;
+package ru.sasha.inventoryvista.service.crud.product.finder;
 
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;

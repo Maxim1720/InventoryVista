@@ -24,6 +24,5 @@ public class Product {
     private Long quantity;
     private Date expirationDate;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    private StorageCondition storageCondition;
+
 }

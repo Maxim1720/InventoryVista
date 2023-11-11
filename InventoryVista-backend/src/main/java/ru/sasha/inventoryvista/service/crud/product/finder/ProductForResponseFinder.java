@@ -1,4 +1,4 @@
-package ru.sasha.inventoryvista.service.crud.product;
+package ru.sasha.inventoryvista.service.crud.product.finder;
 
 import org.springframework.stereotype.Service;
 import ru.sasha.inventoryvista.dto.response.ProductResponseDto;

@@ -1,4 +1,4 @@
-package ru.sasha.inventoryvista.service.crud.product;
+package ru.sasha.inventoryvista.service.crud.product.creator;
 
 import jakarta.persistence.EntityExistsException;
 import org.springframework.data.domain.Example;

@@ -9,6 +9,7 @@ import ru.sasha.inventoryvista.service.crud.Finder;
 import java.util.HashSet;
 import java.util.NoSuchElementException;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 @Service
 public class WareHouseFinder implements Finder<WareHouseResponseDto> {
@@ -28,6 +29,6 @@ public class WareHouseFinder implements Finder<WareHouseResponseDto> {
 
     @Override
     public Set<WareHouseResponseDto> findAll() {
-        return mapper.toResponses(new HashSet<>(dao.findAll()));
+        return dao.findAll().stream().map(mapper::toResponse).collect(Collectors.toSet());
     }
 }

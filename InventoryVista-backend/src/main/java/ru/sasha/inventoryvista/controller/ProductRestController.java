@@ -6,6 +6,11 @@ import org.springframework.web.bind.annotation.*;
 import ru.sasha.inventoryvista.dto.ResponseDto;
 import ru.sasha.inventoryvista.dto.request.ProductRequestDto;
 import ru.sasha.inventoryvista.service.crud.product.*;
+import ru.sasha.inventoryvista.service.crud.product.creator.ProductCreator;
+import ru.sasha.inventoryvista.service.crud.product.finder.ProductFinder;
+import ru.sasha.inventoryvista.service.crud.product.finder.ProductForResponseFinder;
+import ru.sasha.inventoryvista.service.crud.product.updater.ProductUpdater;
+import ru.sasha.inventoryvista.service.crud.product.updater.ProductUpdaterWithHistory;
 
 @RestController
 @RequestMapping("/products")
@@ -20,13 +25,20 @@ public class ProductRestController {
 
     private final ProductRemover productRemover;
 
+    private final ProductUpdaterWithHistory productUpdaterWithHistory;
+
     public ProductRestController(ProductCreator productCreateService,
-                                 ProductForResponseFinder productForResponseFinder, ProductFinder productFinder, ProductUpdater productUpdater, ProductRemover productRemover) {
+                                 ProductForResponseFinder productForResponseFinder,
+                                 ProductFinder productFinder,
+                                 ProductUpdater productUpdater,
+                                 ProductRemover productRemover,
+                                 ProductUpdaterWithHistory productUpdaterWithHistory) {
         this.productCreateService = productCreateService;
         this.productForResponseFinder = productForResponseFinder;
         this.productFinder = productFinder;
         this.productUpdater = productUpdater;
         this.productRemover = productRemover;
+        this.productUpdaterWithHistory = productUpdaterWithHistory;
     }
 
     @PostMapping
@@ -89,7 +101,7 @@ public class ProductRestController {
                 .status(HttpStatus.ACCEPTED)
                 .body(
                         ResponseDto.builder()
-                                .body(productUpdater.updateById(requestDto,id))
+                                .body(productUpdaterWithHistory.updateById(requestDto,id))
                                 .code(HttpStatus.ACCEPTED.value())
                                 .message("Product updated!")
                                 .build()

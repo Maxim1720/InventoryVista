@@ -100,10 +100,7 @@ class AllProducts extends React.Component{
             return (
                     <ul className="
                     row
-                    row-cols-lg-8
-                    row-cols-sm-2
-                    row-cols-xl-12
-                    row-cols-md-8
+
                     container-fluid
                     m-0
                     pt-3

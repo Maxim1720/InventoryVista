@@ -8,6 +8,9 @@ class Navigation extends React.Component{
 
     constructor(props) {
         super(props);
+        this.state = {
+            isAuthorized: false
+        }
     }
 
     render() {
@@ -38,12 +41,20 @@ class Navigation extends React.Component{
                                 </Link>
                             </li>
 
-                            <li className="nav-item dropdown d-flex justify-content-center flex-column align-items-center">
+                            <li className="nav-item">
+                                {this.#suppliers()}
+                            </li>
+
+                            <li className="nav-item">
+                                {this.#supplies()}
+                            </li>
+
+                           {/* <li className="nav-item dropdown d-flex justify-content-center flex-column align-items-center">
                                     <Link className="nav-link dropdown-toggle " data-bs-toggle="dropdown" to="#">
                                         <img className="rounded-pill" src={avatarIcon} style={{width: 50 + "px"}} alt={"avatar"}/>
                                     </Link>
                                 {this.#authNav()}
-                            </li>
+                            </li>*/}
                         </ul>
                     </div>
                 </div>
@@ -53,7 +64,7 @@ class Navigation extends React.Component{
     }
 
     #authNav(){
-        if(!this.props.isAuthorized){
+        if(!this.state.isAuthorized){
             return(
                 <ul className="dropdown-menu dropdown-menu-end ">
                     <li className="dropdown-item">
@@ -67,6 +78,22 @@ class Navigation extends React.Component{
         }
         return <></>
     }
-};
+
+    #suppliers(){
+        return(
+            <Link className="nav-link" to={"/suppliers"}>
+                Поставщики
+            </Link>
+        );
+    }
+
+    #supplies(){
+        return(
+            <Link className="nav-link" to={"/supplies"}>
+                Поставки
+            </Link>
+        );
+    }
+}
 
 export default Navigation;

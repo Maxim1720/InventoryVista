@@ -134,7 +134,12 @@ class ProductPage extends React.Component{
                             Описание: {data.description}
                         </p>
                         <p>Количество: {data.quantity}</p>
-                        <p></p>
+                        <p className="">Дата истечения срока годности: {" "}
+                            <span
+                                className={"fw-bold " + ((new Date(Date.parse(data.expirationDate) - new Date().getTime()).getDate()) > 7 ? "" : "text-danger")}>
+                                {new Date(data.expirationDate.split('T')[0]).toLocaleDateString()}
+                            </span>
+                        </p>
                     </div>
                     {
                         !this.state.error
@@ -142,8 +147,8 @@ class ProductPage extends React.Component{
                         : this.#storageConditionError()
                     }
                     <hr/>
-                    <div className="d-flex flex-row-reverse justify-content-between">
-                        <button className="btn btn-danger" onClick={(e)=>{
+                    <div className="d-flex flex-row-reverse justify-content-between form-control">
+                        <button className="btn btn-danger" onClick={(e) => {
                             console.log("removing...");
                             this.onRemove(e);
                         }}>Удалить</button>

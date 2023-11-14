@@ -21,8 +21,6 @@ public class ProductRestController implements RestCrudController<ProductRequestD
 
     private final ProductFinder productFinder;
 
-    private final ProductUpdater productUpdater;
-
     private final ProductRemover productRemover;
 
     private final ProductUpdaterWithHistory productUpdaterWithHistory;
@@ -30,13 +28,11 @@ public class ProductRestController implements RestCrudController<ProductRequestD
     public ProductRestController(ProductCreator productCreateService,
                                  ProductForResponseFinder productForResponseFinder,
                                  ProductFinder productFinder,
-                                 ProductUpdater productUpdater,
                                  ProductRemover productRemover,
                                  ProductUpdaterWithHistory productUpdaterWithHistory) {
         this.productCreateService = productCreateService;
         this.productForResponseFinder = productForResponseFinder;
         this.productFinder = productFinder;
-        this.productUpdater = productUpdater;
         this.productRemover = productRemover;
         this.productUpdaterWithHistory = productUpdaterWithHistory;
     }
@@ -52,7 +48,7 @@ public class ProductRestController implements RestCrudController<ProductRequestD
     }
 
     @GetMapping
-    public ResponseEntity<ResponseDto> get(){
+    public ResponseEntity<ResponseDto> all(){
         return ResponseEntity.ok(
                 ResponseDto.builder()
                         .body(productForResponseFinder.findAll())

@@ -40,7 +40,7 @@ public class ProductUpdaterWithHistory implements Updater<ProductRequestDto, Pro
         history.setProduct(productFinder.findById(id));
 
         if(history.getOldDate().getTime()!=history.getNewDate().getTime()) {
-            history = expirationHistoryCreator.create(history);
+            expirationHistoryCreator.create(history);
             log.info("History created!");
         }
         log.info(history.toString());

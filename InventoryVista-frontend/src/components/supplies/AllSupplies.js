@@ -45,13 +45,21 @@ class AllSupplies extends React.Component {
     else if(!this.state.isLoaded){
       return <Loading/>
     }
+    else if(!this.state.items.length){
+        return (
+            <div className="h-100 text-center d-flex flex-column justify-content-center h1">
+                Здесь пока что ничего нет :(
+            </div>
+        );
+    }
 
     return (
         <ul className="row h-100 list-group p-2">
           {
             this.state.items.map(i=>(
                 <li className="list-inline-item" key={i.id}>
-                  <SupplyCard supplyData={i} />
+                  <SupplyCard supplyData={i}
+                  />
                 </li>
             ))
           }

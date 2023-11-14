@@ -19,5 +19,5 @@ public interface StorageConditionMapper extends AbsMapper<StorageCondition, Stor
     StorageConditionResponseDto toResponse(StorageCondition storageCondition);
 
 
-    void partialUpdateEntity(StorageConditionRequestDto dto, @MappingTarget StorageCondition entity);
+    StorageCondition partialUpdate(StorageConditionRequestDto dto, @MappingTarget StorageCondition entity);
 }

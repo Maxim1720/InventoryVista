@@ -5,24 +5,32 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import ru.sasha.inventoryvista.dto.ResponseDto;
 import ru.sasha.inventoryvista.dto.request.WareHouseRequestDto;
+import ru.sasha.inventoryvista.dto.response.WareHouseResponseDto;
+import ru.sasha.inventoryvista.service.crud.Updater;
 import ru.sasha.inventoryvista.service.crud.warehouse.WareHouseCreator;
-import ru.sasha.inventoryvista.service.crud.warehouse.WareHouseFinder;
+import ru.sasha.inventoryvista.service.crud.warehouse.WareHouseResponseDtoFinder;
 import ru.sasha.inventoryvista.service.crud.warehouse.WareHouseRemover;
 
 @RestController
 @RequestMapping("/ware-houses")
-public class WareHouseCrudRestController {
+public class WareHouseRestController {
 
 
     private final WareHouseCreator wareHouseCreator;
-    private final WareHouseFinder wareHouseFinder;
+    private final WareHouseResponseDtoFinder wareHouseResponseDtoFinder;
 
     private final WareHouseRemover wareHouseRemover;
 
-    public WareHouseCrudRestController(WareHouseCreator wareHouseCreator, WareHouseFinder wareHouseFinder, WareHouseRemover wareHouseRemover) {
+    private final Updater<WareHouseRequestDto, WareHouseResponseDto> updater;
+
+    public WareHouseRestController(WareHouseCreator wareHouseCreator,
+                                   WareHouseResponseDtoFinder wareHouseResponseDtoFinder,
+                                   WareHouseRemover wareHouseRemover,
+                                   Updater<WareHouseRequestDto, WareHouseResponseDto> updater) {
         this.wareHouseCreator = wareHouseCreator;
-        this.wareHouseFinder = wareHouseFinder;
+        this.wareHouseResponseDtoFinder = wareHouseResponseDtoFinder;
         this.wareHouseRemover = wareHouseRemover;
+        this.updater = updater;
     }
 
     @PostMapping
@@ -39,7 +47,7 @@ public class WareHouseCrudRestController {
     public ResponseEntity<ResponseDto> all(){
         return ResponseEntity.ok(
                 ResponseDto.builder()
-                        .body(wareHouseFinder.findAll())
+                        .body(wareHouseResponseDtoFinder.findAll())
                         .code(HttpStatus.OK.value())
                         .build()
         );
@@ -49,7 +57,7 @@ public class WareHouseCrudRestController {
     public ResponseEntity<ResponseDto> getById(@PathVariable("id") Long id){
         return ResponseEntity.ok(
                 ResponseDto.builder()
-                        .body(wareHouseFinder.findById(id))
+                        .body(wareHouseResponseDtoFinder.findById(id))
                         .code(HttpStatus.OK.value())
                         .build()
         );
@@ -62,6 +70,17 @@ public class WareHouseCrudRestController {
                 ResponseDto.builder().message(
                         "Successfully removed!!!"
                 ).build()
+        );
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<ResponseDto> updateById(@PathVariable("id") Long id, @RequestBody WareHouseRequestDto dto){
+        return ResponseEntity.ok(
+                ResponseDto.builder()
+                        .code(HttpStatus.OK.value())
+                        .body(updater.updateById(dto, id))
+                        .message("updated!")
+                        .build()
         );
     }
 }

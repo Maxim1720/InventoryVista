@@ -10,7 +10,7 @@ import ru.sasha.inventoryvista.entity.StorageCondition;
 
 @Mapper(componentModel = "spring",
 nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
-public interface StorageConditionMapper {
+public interface StorageConditionMapper extends AbsMapper<StorageCondition, StorageConditionRequestDto, StorageConditionResponseDto>{
 
     @Mapping(source = "productId", target = "product.id")
     StorageCondition toEntity(StorageConditionRequestDto storageConditionRequestDto);

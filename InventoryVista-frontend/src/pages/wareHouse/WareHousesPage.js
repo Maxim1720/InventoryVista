@@ -14,7 +14,7 @@ class WareHousesPage extends React.Component {
     render() {
         return (
             <PageWithHeaderAndFooter content={
-                <>
+                <div className="h-100 d-flex flex-column">
                     <ul className="nav nav-tabs nav-fill mt-2 container nav-justified">
                         <li className="nav-item">
                             <Link className="nav-link bg-primary active text-light" to="#all-wareHouses" data-bs-toggle="tab">
@@ -37,7 +37,7 @@ class WareHousesPage extends React.Component {
                             <WareHouseCreatePage/>
                         </div>
                     </div>
-                </>
+                </div>
             }/>
         );
     }

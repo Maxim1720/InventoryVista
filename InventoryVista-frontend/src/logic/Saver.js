@@ -8,7 +8,12 @@ class Saver {
             body:JSON.stringify(requestData),
             headers: { 'Content-Type': 'application/json' },
         };
-        return await fetch(this.url, options).then(resp=>resp.json());
+        return await fetch(this.url, options).then(resp=>{
+            if(!resp.ok){
+                throw new Error(`${resp.status} ${resp.statusText && ':'}`);
+            }
+            return resp.json()
+        });
     }
 }
 

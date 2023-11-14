@@ -5,7 +5,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import ru.sasha.inventoryvista.dto.ResponseDto;
 import ru.sasha.inventoryvista.dto.request.StorageConditionRequestDto;
-import ru.sasha.inventoryvista.entity.StorageCondition;
 import ru.sasha.inventoryvista.mapper.StorageConditionMapper;
 import ru.sasha.inventoryvista.service.crud.storagecondition.StorageConditionCreator;
 import ru.sasha.inventoryvista.service.crud.storagecondition.StorageConditionFinder;
@@ -36,10 +35,9 @@ public class StorageConditionController {
     public ResponseEntity<ResponseDto> create(@RequestBody StorageConditionRequestDto storageCondition,
                                                    @PathVariable("id") Long productId) {
         storageCondition.setProductId(productId);
-        StorageCondition sc = storageConditionMapper.toEntity(storageCondition);
         return ResponseEntity.ok(
                 ResponseDto.builder()
-                        .body(storageConditionMapper.toResponse(storageConditionCreator.create(sc)))
+                        .body(storageConditionCreator.create(storageCondition))
                         .message("Has been created!")
                         .code(HttpStatus.OK.value())
                         .build()

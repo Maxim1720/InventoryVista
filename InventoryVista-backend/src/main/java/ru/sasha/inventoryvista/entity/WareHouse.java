@@ -17,5 +17,8 @@ public class WareHouse {
     private Long id;
 
     @Column(nullable = false, unique = true)
+    private String name;
+
+    @Column(nullable = false, unique = true)
     private String location;
 }

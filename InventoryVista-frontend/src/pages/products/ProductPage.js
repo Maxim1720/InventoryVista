@@ -68,10 +68,30 @@ class ProductPage extends React.Component{
     }
 
     #storageConditionData = (storageCondition)=>{
+        (console.log(isNaN(storageCondition.temperature)));
+        console.log(storageCondition.lighting);
         return(
             <div>
-                <p className="fw-bold fst-italic">Хранить при температуре {storageCondition.temperature}°C,
-                    влажности {storageCondition.humidity}% и освещении {storageCondition.lighting} люкс</p>
+                <p className="fw-bold fst-italic">
+                    Хранить при
+                    {
+                        !isNaN(storageCondition.temperature) ?
+                            "температуре " + storageCondition.temperature + "°C, "
+                            :""
+                    }
+                    {
+                        !isNaN(storageCondition.humidity)?
+                            "влажности " + storageCondition.humidity+ "%"
+                            :""
+                    }
+                     {
+                         isNaN(storageCondition.lighting)?
+                             "и освещении " + storageCondition.lighting + " люкс"
+                             :""
+                     } </p>
+                <p>
+                    Примечания: {storageCondition.otherDetails || " отсутствуют"}
+                </p>
             </div>
         );
     }
@@ -85,7 +105,7 @@ class ProductPage extends React.Component{
         );
     }
 
-    onRemove = (e)=>{
+    onRemove = ()=>{
         console.log("removing clicked!");
         new Remover({url: api.api.baseUrl+`/products`})
             .removeById(this.state.data.id)
@@ -108,6 +128,9 @@ class ProductPage extends React.Component{
         window.location.replace(window.location.href+'/update');
     }
 
+    onClickHistory = (e) =>{
+        window.location.replace(window.location.href+'/history');
+    }
     render() {
 
         const {isLoaded, data, storageCondition} = this.state;
@@ -131,7 +154,12 @@ class ProductPage extends React.Component{
                             Описание: {data.description}
                         </p>
                         <p>Количество: {data.quantity}</p>
-                        <p></p>
+                        <p className="">Дата истечения срока годности: {" "}
+                            <span
+                                className={"fw-bold " + ((new Date(Date.parse(data.expirationDate) - new Date().getTime()).getDate()) > 7 ? "" : "text-danger")}>
+                                {new Date(data.expirationDate.split('T')[0]).toLocaleDateString()}
+                            </span>
+                        </p>
                     </div>
                     {
                         !this.state.error
@@ -139,11 +167,12 @@ class ProductPage extends React.Component{
                         : this.#storageConditionError()
                     }
                     <hr/>
-                    <div className="d-flex flex-row-reverse justify-content-between">
-                        <button className="btn btn-danger" onClick={(e)=>{
+                    <div className="d-flex flex-row-reverse justify-content-between form-control">
+                        <button className="btn btn-danger" onClick={(e) => {
                             console.log("removing...");
-                            this.onRemove(e);
+                            this.onRemove();
                         }}>Удалить</button>
+                        <button className="btn btn-info" onClick={this.onClickHistory}>История</button>
                         <button className="btn btn-primary" onClick={this.onUpdate}>Редактировать</button>
                     </div>
                 </div>

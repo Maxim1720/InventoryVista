@@ -8,5 +8,6 @@ import lombok.*;
 @NoArgsConstructor
 @Data
 public class WareHouseRequestDto {
+    private String name;
     private String location;
 }

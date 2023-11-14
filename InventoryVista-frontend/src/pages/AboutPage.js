@@ -1,5 +1,6 @@
 import React from 'react';
 import PageWithHeaderAndFooter from "../components/PageWithHeaderAndFooter";
+import developerImg from '../img/developer.jpg';
 
 class AboutPage extends React.Component {
     render() {
@@ -10,12 +11,17 @@ class AboutPage extends React.Component {
 
     #about() {
         return (
-            <div className="d-flex flex-column justify-content-center align-items-center">
-                <h1>О нас</h1>
-                <p>Мы специализируемся на предоставлении информации о недвижимости и удобном поиске объектов.</p>
-                <p>Свяжитесь с нами для получения дополнительной информации.</p>
+            <div
+                className="d-flex flex-column justify-content-center align-items-center h-100 bg-secondary-subtle border">
+                <div>
+                    <h1>О разработчике</h1>
+                    <img src={developerImg} alt="developer"/>
+                    <h2>Вязков Александр Александрович</h2>
+                    <h3>ИВТ-11</h3>
+                    <h4>210225</h4>
+                </div>
             </div>);
     }
-};
+}
 
 export default AboutPage;

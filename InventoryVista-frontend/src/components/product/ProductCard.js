@@ -4,13 +4,6 @@ import {Link} from "react-router-dom";
 class ProductCard extends React.Component{
     constructor(props) {
         super(props);
-        this.item = {
-            id: this.props.item.id,
-            name: this.props.item.name,
-            description: this.props.item.description,
-            quantity: this.props.item.quantity,
-            expirationDate: this.props.item.expirationDate
-        };
     }
 
     render() {
@@ -21,17 +14,17 @@ class ProductCard extends React.Component{
             text-wrap
             text-decoration-none
             "
-                  to={String(this.item.id)}
+                  to={String(this.props.item.id)}
             >
                 <div>
-                    <h3 className="card-title text-wrap text-break">{this.item.name}</h3>
+                    <h3 className="card-title text-wrap text-break">{this.props.item.name}</h3>
                 </div>
                 <div>
                     <p className="card-text">
                         <span className="">Количество:</span>
-                        <span className={"fw-bold"}>{this.item.quantity}</span>
+                        <span className={"fw-bold"}>{this.props.item.quantity}</span>
                     </p>
-                    <p className="card-text">{this.#getDateExpiration(this.item.expirationDate)}</p>
+                    <p className="card-text">{this.#getDateExpiration(this.props.item.expirationDate)}</p>
                 </div>
             </Link>
         );
@@ -40,7 +33,7 @@ class ProductCard extends React.Component{
     #getDateExpiration(date) {
         return (
             <span className={
-                Date.parse(date) - Date.now() <= 7
+                new Date(Date.parse(date) - Date.now()).getDate() <= 7
                     ? "text-danger"
                     : "text-success"
             }>

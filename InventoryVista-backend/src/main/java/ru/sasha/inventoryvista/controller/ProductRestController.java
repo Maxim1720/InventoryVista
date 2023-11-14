@@ -14,7 +14,7 @@ import ru.sasha.inventoryvista.service.crud.product.updater.ProductUpdaterWithHi
 
 @RestController
 @RequestMapping("/products")
-public class ProductRestController {
+public class ProductRestController implements RestCrudController<ProductRequestDto>{
 
     private final ProductCreator productCreateService;
     private final ProductForResponseFinder productForResponseFinder;

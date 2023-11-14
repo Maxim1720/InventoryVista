@@ -47,7 +47,7 @@ class SupplyCard extends React.Component {
     onDelete = (id)=>{
         new Remover({url: api.api.baseUrl+"/supplies"})
             .removeById(id)
-            .then(resp=>{
+            .then(()=>{
                 window.location.replace('/supplies');
             })
             .catch(error=>this.setState({error}));

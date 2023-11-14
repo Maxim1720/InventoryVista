@@ -16,7 +16,7 @@ public abstract class AbsEntityFinder<R> implements Finder<R> {
 
     @Override
     public R findById(Long id) {
-        return dao.findById(id).orElseThrow(()-> new NoSuchElementException());
+        return dao.findById(id).orElseThrow(NoSuchElementException::new);
     }
 
     @Override

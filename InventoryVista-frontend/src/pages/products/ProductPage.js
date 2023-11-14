@@ -105,7 +105,7 @@ class ProductPage extends React.Component{
         );
     }
 
-    onRemove = (e)=>{
+    onRemove = ()=>{
         console.log("removing clicked!");
         new Remover({url: api.api.baseUrl+`/products`})
             .removeById(this.state.data.id)
@@ -170,7 +170,7 @@ class ProductPage extends React.Component{
                     <div className="d-flex flex-row-reverse justify-content-between form-control">
                         <button className="btn btn-danger" onClick={(e) => {
                             console.log("removing...");
-                            this.onRemove(e);
+                            this.onRemove();
                         }}>Удалить</button>
                         <button className="btn btn-info" onClick={this.onClickHistory}>История</button>
                         <button className="btn btn-primary" onClick={this.onUpdate}>Редактировать</button>

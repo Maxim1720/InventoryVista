@@ -73,7 +73,7 @@ class Navigation extends React.Component{
 
     }
 
-    #authNav(){
+    /*#authNav(){
         if(!this.state.isAuthorized){
             return(
                 <ul className="dropdown-menu dropdown-menu-end ">
@@ -87,7 +87,7 @@ class Navigation extends React.Component{
             );
         }
         return <></>
-    }
+    }*/
 
     #suppliers(){
         return(

@@ -12,11 +12,11 @@ import java.util.Set;
 
 @Mapper(componentModel = MappingConstants.ComponentModel.SPRING,
         nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
-public interface WareHouseMapper {
+public interface WareHouseMapper extends AbsMapper<WareHouse,WareHouseRequestDto, WareHouseResponseDto>{
 
     WareHouseResponseDto toResponse(WareHouse wareHouse);
     WareHouse toEntity(WareHouseRequestDto wareHouseRequestDto);
 
     Set<WareHouseResponseDto> toResponses(Set<WareHouse> wareHouses);
-    void partialUpdate(WareHouseRequestDto dto, @MappingTarget WareHouse entity);
+    WareHouse partialUpdate(WareHouseRequestDto dto, @MappingTarget WareHouse entity);
 }

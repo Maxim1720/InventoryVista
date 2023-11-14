@@ -32,7 +32,7 @@ class SupplierCard extends React.Component {
                         <span className={"fw-bold"}>{this.props.item.contacts}</span>
                     </p>
                     <div className="btn-group w-100">
-                        <Link className="btn btn-danger" to="/suppliers" onClick={(e)=>{
+                        <Link className="btn btn-danger" to="/suppliers" onClick={()=>{
                             this.onRemove();
                             window.location.reload();
                         }}>

@@ -66,9 +66,6 @@ class WareHouses extends React.Component {
                 }
             );
     }
-    onEdit = (event)=>{
-        console.log("editing...");
-    }
     render() {
 
         const {isLoaded, items, error} = this.state;

@@ -19,7 +19,7 @@ class Footer extends React.Component{
 
                             <div className="modal-body">
                                 <div>
-                                    <img className="w-100" src={developerImg}/>
+                                    <img className="w-100" src={developerImg} alt="developer"/>
                                     <h2>Вязков Александр Александрович</h2>
                                     <h3>ИВТ-11</h3>
                                     <h4>210225</h4>

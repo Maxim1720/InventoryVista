@@ -4,7 +4,6 @@ import Getter from "../../logic/Getter";
 import api from '../../env.json';
 import Error from "../utils/Error";
 import Loading from "../utils/Loading";
-import {Calendar} from "react-bootstrap-icons";
 
 class SupplyForm extends React.Component {
   constructor(props) {

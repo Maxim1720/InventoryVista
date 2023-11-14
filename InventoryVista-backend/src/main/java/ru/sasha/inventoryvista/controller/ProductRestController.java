@@ -5,11 +5,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import ru.sasha.inventoryvista.dto.ResponseDto;
 import ru.sasha.inventoryvista.dto.request.ProductRequestDto;
-import ru.sasha.inventoryvista.service.crud.product.*;
+import ru.sasha.inventoryvista.service.crud.product.ProductRemover;
 import ru.sasha.inventoryvista.service.crud.product.creator.ProductCreator;
 import ru.sasha.inventoryvista.service.crud.product.finder.ProductFinder;
 import ru.sasha.inventoryvista.service.crud.product.finder.ProductForResponseFinder;
-import ru.sasha.inventoryvista.service.crud.product.updater.ProductUpdater;
 import ru.sasha.inventoryvista.service.crud.product.updater.ProductUpdaterWithHistory;
 
 @RestController

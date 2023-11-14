@@ -17,7 +17,7 @@ class AllSupplies extends React.Component {
   }
 
   componentDidMount() {
-    const getter = new Getter({
+    new Getter({
       url: api.api.baseUrl+"/supplies"
     }).getAll()
         .then(json=>{

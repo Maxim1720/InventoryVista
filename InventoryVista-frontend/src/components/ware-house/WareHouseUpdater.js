@@ -61,7 +61,7 @@ class WareHouseUpdater extends React.Component{
                     ...data
                 }
             })
-            .then(resp=>window.location.replace("/warehouses"))
+            .then(()=>window.location.replace("/warehouses"))
             .catch(error=>this.setState({error}))
     }
 

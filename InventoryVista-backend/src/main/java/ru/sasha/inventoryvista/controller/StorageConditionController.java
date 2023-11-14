@@ -35,10 +35,9 @@ public class StorageConditionController {
     public ResponseEntity<ResponseDto> create(@RequestBody StorageConditionRequestDto storageCondition,
                                                    @PathVariable("id") Long productId) {
         storageCondition.setProductId(productId);
-        StorageConditionRequestDto sc =storageCondition;
         return ResponseEntity.ok(
                 ResponseDto.builder()
-                        .body(storageConditionCreator.create(sc))
+                        .body(storageConditionCreator.create(storageCondition))
                         .message("Has been created!")
                         .code(HttpStatus.OK.value())
                         .build()

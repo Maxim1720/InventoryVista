@@ -1,7 +1,6 @@
 package ru.sasha.inventoryvista.service.crud;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import ru.sasha.inventoryvista.mapper.AbsMapper;
 
 public abstract class AbsEntityCreator<E> implements Creator<E,E>{
 

@@ -1,14 +1,12 @@
 package ru.sasha.inventoryvista.service.crud.storagecondition;
 
 import org.springframework.stereotype.Service;
-import ru.sasha.inventoryvista.dao.StorageConditionDao;
 import ru.sasha.inventoryvista.dto.request.StorageConditionRequestDto;
 import ru.sasha.inventoryvista.dto.response.StorageConditionResponseDto;
 import ru.sasha.inventoryvista.entity.StorageCondition;
 import ru.sasha.inventoryvista.mapper.AbsMapper;
 import ru.sasha.inventoryvista.service.crud.AbsCreator;
 import ru.sasha.inventoryvista.service.crud.AbsEntityCreator;
-import ru.sasha.inventoryvista.service.crud.Creator;
 
 @Service
 public class StorageConditionCreator extends AbsCreator<StorageCondition, StorageConditionRequestDto, StorageConditionResponseDto> {

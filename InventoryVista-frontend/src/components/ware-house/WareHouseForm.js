@@ -1,5 +1,4 @@
 import React from "react";
-import Error from "../utils/Error";
 
 
 class WareHouseForm extends React.Component{

@@ -2,8 +2,8 @@ import React, {Component} from 'react';
 import apiConfig from '../../env.json';
 import Saver from "../../logic/Saver";
 import Error from "../utils/Error";
-import WareHousesPage from "../../pages/wareHouse/WareHousesPage";
 import WareHouseForm from "./WareHouseForm";
+
 class WareHouseCreator extends Component {
     constructor(props) {
         super(props);
@@ -33,9 +33,7 @@ class WareHouseCreator extends Component {
         });
 
         saver.save({...this.state.formData})
-            .then((data) => {
-                // Перенаправление на страницу с информацией о новом складе
-                // this.props.history.push(`/warehouses/${data.body.id}`);
+            .then(() => {
                 window.location.replace("/warehouses");
             })
             .catch((error) => {
@@ -51,9 +49,7 @@ class WareHouseCreator extends Component {
         });
 
         saver.save({...data})
-            .then((data) => {
-                // Перенаправление на страницу с информацией о новом складе
-                // this.props.history.push(`/warehouses/${data.body.id}`);
+            .then(() => {
                 window.location.replace("/warehouses");
             })
             .catch((error) => {

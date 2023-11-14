@@ -22,8 +22,6 @@ class SupplyForm extends React.Component {
   componentDidMount() {
     const products = []
     const suppliers = [];
-    let errorMessage;
-
     Promise.all([
       new Getter({
         url: api.api.baseUrl + "/products"
@@ -32,7 +30,7 @@ class SupplyForm extends React.Component {
         url: api.api.baseUrl + "/suppliers"
       }).getAll().then(resp => suppliers.push(...resp.body))
     ])
-        .then(r => {
+        .then(() => {
           this.setState(prev => ({
             ...prev,
             formData: {

@@ -1,16 +1,11 @@
 package ru.sasha.inventoryvista.service.crud.expiration.history;
 
 import org.springframework.stereotype.Service;
-import ru.sasha.inventoryvista.dao.ExpirationHistoryDao;
 import ru.sasha.inventoryvista.dto.response.ExpirationHistoryResponseDto;
 import ru.sasha.inventoryvista.entity.ExpirationHistory;
 import ru.sasha.inventoryvista.mapper.AbsMapper;
-import ru.sasha.inventoryvista.mapper.ExpirationHistoryMapper;
-import ru.sasha.inventoryvista.service.crud.AbsEntityFinder;
 import ru.sasha.inventoryvista.service.crud.AbsFinder;
-import ru.sasha.inventoryvista.service.crud.Finder;
 
-import java.util.NoSuchElementException;
 import java.util.Set;
 import java.util.stream.Collectors;
 

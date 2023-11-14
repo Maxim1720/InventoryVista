@@ -2,17 +2,11 @@ package ru.sasha.inventoryvista.service.crud.storagecondition;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
-import ru.sasha.inventoryvista.dao.StorageConditionDao;
 import ru.sasha.inventoryvista.dto.request.StorageConditionRequestDto;
 import ru.sasha.inventoryvista.dto.response.StorageConditionResponseDto;
 import ru.sasha.inventoryvista.entity.StorageCondition;
 import ru.sasha.inventoryvista.mapper.AbsMapper;
-import ru.sasha.inventoryvista.mapper.StorageConditionMapper;
 import ru.sasha.inventoryvista.service.crud.AbsUpdater;
-import ru.sasha.inventoryvista.service.crud.Finder;
-import ru.sasha.inventoryvista.service.crud.Updater;
-
-import java.util.NoSuchElementException;
 
 @Service
 public class StorageConditionUpdater /*implements Updater<StorageConditionRequestDto, StorageConditionResponseDto>*/

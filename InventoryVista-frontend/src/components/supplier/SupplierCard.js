@@ -19,7 +19,7 @@ class SupplierCard extends React.Component {
 
     render() {
         return (
-            <Link
+            <div
                 className="card-body d-flex flex-column justify-content-between text-wrap text-decoration-none"
                 to={String(this.props.item.id)+'/update'}
             >
@@ -44,7 +44,7 @@ class SupplierCard extends React.Component {
                     </div>
 
                 </div>
-            </Link>
+            </div>
         );
     }
 }

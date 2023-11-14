@@ -124,11 +124,11 @@ class ProductPage extends React.Component{
 
             })
     }
-    onUpdate = (e) =>{
+    onUpdate = () =>{
         window.location.replace(window.location.href+'/update');
     }
 
-    onClickHistory = (e) =>{
+    onClickHistory = () =>{
         window.location.replace(window.location.href+'/history');
     }
     render() {

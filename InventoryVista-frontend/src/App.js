@@ -13,6 +13,7 @@ import SuppliersTabs from "./components/supplier/SuppliersTabs";
 import SupplierUpdaterWrapper from "./components/supplier/SupplierUpdater";
 import SupplyUpdaterWrapper from "./components/supplies/SupplyUpdater";
 import SuppliesPage from "./components/supplies/SuppliesPage";
+import WareHouseUpdaterWrapper from "./components/ware-house/WareHouseUpdater";
 
 
 function App() {
@@ -29,6 +30,7 @@ function App() {
                     <Route path="/products/:id/history" element={<ExpirationHistoryWrapper/>}/>
                     <Route path="/products/:id" element={<ProductPageWrapper/>}/>
                     <Route path="/warehouses" element={<WareHousesPage/>}/>
+                    <Route path="/warehouses/:id/update" element={<WareHouseUpdaterWrapper/>}/>
                     <Route path="/suppliers" element={<SuppliersTabs/>}/>
                     <Route path="/suppliers/:id/update" element={<SupplierUpdaterWrapper/>}/>
 

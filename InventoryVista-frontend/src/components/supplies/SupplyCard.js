@@ -5,6 +5,7 @@ import Getter from "../../logic/Getter";
 import api from '../../env.json';
 import Loading from "../utils/Loading";
 import Error from "../utils/Error";
+import Remover from "../../logic/Remover";
 
 class SupplyCard extends React.Component {
 
@@ -43,6 +44,16 @@ class SupplyCard extends React.Component {
             .catch(error=>this.setState({error}));
     }
 
+    onDelete = (id)=>{
+        new Remover({url: api.api.baseUrl+"/supplies"})
+            .removeById(id)
+            .then(resp=>{
+                window.location.replace('/supplies');
+            })
+            .catch(error=>this.setState({error}));
+    }
+
+
     render() {
 
         if(!this.state.isLoaded){
@@ -52,7 +63,7 @@ class SupplyCard extends React.Component {
             return <Error message={this.state.error.message}/>
         }
 
-        const {supplyData, onDelete} = this.props;
+        const {supplyData} = this.props;
 
         return (
             <div className="card mb-3">
@@ -64,12 +75,16 @@ class SupplyCard extends React.Component {
                     <p className="card-text">Дата поставки: {new Date(supplyData.supplyDate).toLocaleDateString()}</p>
 
                     {/* Кнопка для удаления */}
-                    <a className="btn btn-danger" onClick={() => onDelete(supplyData.id)}>
+                    <a className="btn btn-danger" onClick={() => {
+                        this.onDelete(supplyData.id);
+                    }}>
                         Удалить
                     </a>
 
                     {/* Кнопка для перехода на страницу редактирования */}
-                    <Link to={`/supplies/${supplyData.id}/update`} className="btn btn-primary ms-2">
+                    <Link to={`${supplyData.id}/update`}
+                          className="btn btn-primary ms-2"
+                    >
                         Редактировать
                     </Link>
                 </div>

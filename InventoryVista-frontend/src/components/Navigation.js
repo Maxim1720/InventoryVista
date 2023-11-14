@@ -1,7 +1,6 @@
 import React from 'react';
-import {Link} from 'react-router-dom';
+import {Link, NavLink} from 'react-router-dom';
 import brandIcon from "../img/icon.png";
-import avatarIcon from "../img/auth/icon.png";
 import 'bootstrap';
 
 class Navigation extends React.Component{
@@ -9,7 +8,8 @@ class Navigation extends React.Component{
     constructor(props) {
         super(props);
         this.state = {
-            isAuthorized: false
+            isAuthorized: false,
+            activeLink: ''
         }
     }
 
@@ -19,7 +19,7 @@ class Navigation extends React.Component{
             border-bottom border-dark-subtle border-2 border-opacity-25
             ">
                 <div className="container-fluid ps-2 pe-2 d-flex justify-content-between">
-                    <Link className={"navbar-brand"} to={"/"}>
+                    <Link className={"navbar-brand"}  to={"/"}>
                         <img className="" style={{width: 50 + "px"}}
                              src={brandIcon} alt={"icon"}/>
                     </Link>
@@ -32,13 +32,23 @@ class Navigation extends React.Component{
                     <div className="collapse navbar-collapse justify-content-end" id="collapsibleNavbar">
                         <ul className="navbar-nav nav-pills align-items-center">
                             <li className="nav-item">
-                                <Link className="nav-link " to="/products">Продукты</Link>
+                                <NavLink className="nav-link"
+
+                                         style={({ isActive })=>{
+                                             return this.navStyle(isActive)
+                                         }}
+
+                                         to="/products">Продукты</NavLink>
                             </li>
 
                             <li className="nav-item">
-                                <Link className="nav-link" to="/warehouses">
+                                <NavLink className="nav-link"
+                                         style={({ isActive })=>{
+                                             return this.navStyle(isActive)
+                                         }}
+                                         to="/warehouses">
                                     Склады
-                                </Link>
+                                </NavLink>
                             </li>
 
                             <li className="nav-item">
@@ -81,18 +91,43 @@ class Navigation extends React.Component{
 
     #suppliers(){
         return(
-            <Link className="nav-link" to={"/suppliers"}>
+            <NavLink className="nav-link" to={"/suppliers"}
+                     style={({ isActive })=>{
+                         return this.navStyle(isActive)
+                     }}
+            >
                 Поставщики
-            </Link>
+            </NavLink>
         );
     }
 
-    #supplies(){
+    #supplies = ()=>{
         return(
-            <Link className="nav-link" to={"/supplies"}>
+            <NavLink className="nav-link"
+                  style={({ isActive })=>{
+                      return this.navStyle(isActive)
+                  }}
+                  to={"/supplies"}>
                 Поставки
-            </Link>
+            </NavLink>
         );
+    }
+
+
+    navStyle(isActive){
+        return isActive? this.activeStyle(): this.simpleStyle()
+    }
+    activeStyle = ()=> {
+        return {
+            fontWeight: 'bold',
+            backgroundColor: 'transparent'
+        }
+    }
+    simpleStyle =()=>{
+        return{
+            fontWeight: 'normal',
+            backgroundColor: 'transparent'
+        }
     }
 }
 

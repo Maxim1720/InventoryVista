@@ -27,6 +27,7 @@ class SupplierCreator extends React.Component {
             }),
             () => {
               data.supplierId = this.state.supplierResp.id;
+              window.location.reload();
             }
           );
         } else {

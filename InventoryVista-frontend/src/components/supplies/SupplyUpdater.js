@@ -7,10 +7,11 @@ import api from '../../env.json';
 import {useParams} from "react-router-dom";
 import Loading from "../utils/Loading";
 import Error from "../utils/Error";
+import Updater from "../../logic/Updater";
 
 function SupplyUpdaterWrapper() {
   const {id} = useParams();
-  return <SupplyUpdaterWrapper id={id}/>
+  return <SupplyUpdater id={id}/>
 }
 
 class SupplyUpdater extends React.Component {
@@ -27,38 +28,52 @@ class SupplyUpdater extends React.Component {
 
   componentDidMount() {
     new Getter({
-      url: api.api.baseUrl + `/supplies/`
+      url: api.api.baseUrl + `/supplies`
     })
         .getById(this.props.id)
         .then(resp=> {
-          this.setState(prev => ({
-            ...prev,
+          this.setState({
             formData: {
-              ...resp.body
+              ...resp.body,
             },
             isLoaded: true
-          }))
+          },()=>console.log("in updater: " + JSON.stringify(this.state.formData)))
         })
         .catch(error=>{this.setState({error})})
 
   }
-
-  // Функция обновления поставки
   updateSupply = (data) => {
-    // Логика для обновления поставки на сервере
-    console.log('Updating supply:', data);
+    new Updater({url:api.api.baseUrl+"/supplies"})
+        .updateById({
+          id: this.props.id,
+          data:{
+            ...data
+          }
+        })
+        .then(resp=>{
+            console.log("UPDATED ID: " + resp.body.id);
+            window.location.replace("/supplies");
+        })
+        .catch(error=>this.setState({error}));
+
   };
 
   render() {
 
-    if (this.state.isLoaded) {
+    if (this.state.error) {
+      return (
+          <div className="h-100">
+            <Error message={this.state.error.message}/>
+          </div>
+      );
+    } else if (!this.state.isLoaded) {
       return <Loading/>
-    } else if (this.state.error) {
-      return <Error message={this.state.error.message}/>
     }
-    return <PageWithHeaderAndFooter content={
-      <SupplyForm initFormData={this.state.formData} onSubmit={this.updateSupply}/>
-    }/>
+    else {
+      return <PageWithHeaderAndFooter content={
+        <SupplyForm initFormData={this.state.formData} onSubmit={this.updateSupply}/>
+      }/>
+    }
   }
 }
 

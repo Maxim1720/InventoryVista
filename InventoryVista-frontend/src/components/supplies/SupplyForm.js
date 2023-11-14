@@ -4,6 +4,7 @@ import Getter from "../../logic/Getter";
 import api from '../../env.json';
 import Error from "../utils/Error";
 import Loading from "../utils/Loading";
+import {Calendar} from "react-bootstrap-icons";
 
 class SupplyForm extends React.Component {
   constructor(props) {
@@ -47,6 +48,19 @@ class SupplyForm extends React.Component {
         .catch(error => {
           this.setState({error})
         });
+
+    if(this.props.initFormData){
+      this.setState(prev=>({
+        ...prev,
+        formData:{
+          ...prev.formData,
+          ...this.props.initFormData,
+          supplyDate: new Date(Date.parse(this.props.initFormData.supplyDate)).toISOString().split("T")[0]
+        }
+      }), ()=>{
+
+      });
+    }
   }
 
   handleInputChange = (e) => {
@@ -120,7 +134,7 @@ class SupplyForm extends React.Component {
                   className="form-control"
                   id="quantity"
                   name="quantity"
-                  value={this.props.initFormData.quantity}
+                  value={this.state.formData.quantity}
                   onChange={this.handleInputChange}
                   required
               />
@@ -134,13 +148,13 @@ class SupplyForm extends React.Component {
                   className="form-control"
                   id="supplyDate"
                   name="supplyDate"
-                  value={this.props.initFormData.supplyDate}
+                  value={this.state.formData.supplyDate}
                   onChange={this.handleInputChange}
                   required
               />
             </div>
             <button type="submit" className="btn btn-success w-100">
-              {this.props.initFormData.id ? 'Обновить' : 'Создать'}
+              {this.state.formData.id ? 'Обновить' : 'Создать'}
             </button>
           </form>
         </div>

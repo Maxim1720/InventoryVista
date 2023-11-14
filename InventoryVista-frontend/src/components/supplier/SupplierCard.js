@@ -1,9 +1,20 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import Remover from "../../logic/Remover";
+import config from '../../env.json';
 
 class SupplierCard extends React.Component {
     constructor(props) {
         super(props);
+    }
+
+    onRemove = ()=> {
+        new Remover({url: config.api.baseUrl + "/suppliers"})
+            .removeById(this.props.item.id)
+            .then(resp => {
+                console.log(JSON.stringify(resp));
+            })
+            .catch(error => this.setState({error}));
     }
 
     render() {
@@ -17,10 +28,21 @@ class SupplierCard extends React.Component {
                 </div>
                 <div>
                     <p className="card-text">
-                        <span className="">Контактное лицо:</span>
+                        <span className="">Контакты: </span>
                         <span className={"fw-bold"}>{this.props.item.contacts}</span>
                     </p>
-                    {/* Другие атрибуты поставщика */}
+                    <div className="btn-group w-100">
+                        <Link className="btn btn-danger" to="/suppliers" onClick={(e)=>{
+                            this.onRemove();
+                            window.location.reload();
+                        }}>
+                            Удалить
+                        </Link>
+                        <Link className="btn btn-primary" to={this.props.item.id+"/update"}>
+                            Редактировать
+                        </Link>
+                    </div>
+
                 </div>
             </Link>
         );

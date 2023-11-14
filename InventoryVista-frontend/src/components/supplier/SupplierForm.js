@@ -26,16 +26,12 @@ class SupplierForm extends React.Component {
 
   componentDidMount() {
     if (this.props.initFormData) {
-
-      let form = window.document.getElementsByName("supplierForm")[0];
-      for (const key in this.props.initFormData) {
-        if (form[key] && key !== "id") {
-          form[key].value = this.props.initFormData[key];
-        }
-      }
       this.setState({
+        formData:{
+          ...this.props.initFormData
+        },
         isLoaded: true
-      });
+      })
     }
   }
 

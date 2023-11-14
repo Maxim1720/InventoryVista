@@ -68,10 +68,30 @@ class ProductPage extends React.Component{
     }
 
     #storageConditionData = (storageCondition)=>{
+        (console.log(isNaN(storageCondition.temperature)));
+        console.log(storageCondition.lighting);
         return(
             <div>
-                <p className="fw-bold fst-italic">Хранить при температуре {storageCondition.temperature}°C,
-                    влажности {storageCondition.humidity}% и освещении {storageCondition.lighting} люкс</p>
+                <p className="fw-bold fst-italic">
+                    Хранить при
+                    {
+                        !isNaN(storageCondition.temperature) ?
+                            "температуре " + storageCondition.temperature + "°C, "
+                            :""
+                    }
+                    {
+                        !isNaN(storageCondition.humidity)?
+                            "влажности " + storageCondition.humidity+ "%"
+                            :""
+                    }
+                     {
+                         isNaN(storageCondition.lighting)?
+                             "и освещении " + storageCondition.lighting + " люкс"
+                             :""
+                     } </p>
+                <p>
+                    Примечания: {storageCondition.otherDetails || " отсутствуют"}
+                </p>
             </div>
         );
     }

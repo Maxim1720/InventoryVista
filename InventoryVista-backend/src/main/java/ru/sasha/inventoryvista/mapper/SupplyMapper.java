@@ -7,7 +7,7 @@ import ru.sasha.inventoryvista.entity.Supply;
 
 @Mapper(unmappedTargetPolicy = ReportingPolicy.WARN, componentModel = MappingConstants.ComponentModel.SPRING,
         nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
-public interface SupplyMapper {
+public interface SupplyMapper extends AbsMapper<Supply, SupplyRequestDto, SupplyResponseDto> {
     @Mapping(source = "productId", target = "product.id")
     @Mapping(source = "supplierId", target = "supplier.id")
     Supply toEntity(SupplyRequestDto supplyRequestDto);

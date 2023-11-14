@@ -7,11 +7,9 @@ import ru.sasha.inventoryvista.entity.Supplier;
 
 @Mapper(unmappedTargetPolicy = ReportingPolicy.IGNORE, componentModel = MappingConstants.ComponentModel.SPRING,
         nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
-public interface SupplierMapper {
+public interface SupplierMapper extends AbsMapper<Supplier, SupplierRequestDto, SupplierResponseDto>{
     Supplier toEntity(SupplierRequestDto dto);
     SupplierResponseDto toDto(Supplier supplier);
     @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
     Supplier partialUpdate(SupplierRequestDto dto, @MappingTarget Supplier entity);
-
-
 }

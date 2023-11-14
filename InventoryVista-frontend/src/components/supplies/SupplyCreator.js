@@ -39,7 +39,7 @@ class SupplyCreator extends React.Component {
 
     return (
         <div className="h-100 bg-body-secondary">
-          <SupplyForm onSubmit={this.createSupply} initFormData={{}}/>
+          <SupplyForm onSubmit={this.createSupply}/>
         </div>
     );
   }

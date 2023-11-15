@@ -1,6 +1,6 @@
 # InventoryVista
 ## Приложение для инвентаризации товаров со сроком годности
-
+Отчет по курсовой находится в корне проекта - [Санек.docx](https://github.com/Maxim1720/InventoryVista/blob/main/%D0%A1%D0%B0%D0%BD%D0%B5%D0%BA.docx)
 
 ## Требования
  * Intellij IDEA Ultimate

@@ -1,0 +1,22 @@
+version: "3"
+services:
+  front:
+    extends:
+      file: InventoryVista-frontend/docker-compose.yml
+      service: front
+    depends_on:
+      - back
+  back:
+    extends:
+      file: InventoryVista-backend/docker-compose.yml
+      service: back
+    depends_on:
+      - db
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/inventory_vista
+      - SPRING_DATASOURCE_USER=postgres
+      - SPRING_DATASOURCE_PASSWORD=postgres
+  db:
+    extends:
+      file: ./dc-pg.yml
+      service: pg

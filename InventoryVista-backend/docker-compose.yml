@@ -1,0 +1,8 @@
+version: "3"
+services:
+  back:
+    build:
+      context: .
+    container_name: inventory_vista_back
+    ports:
+      - 8080:8080

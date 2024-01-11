@@ -1,0 +1,12 @@
+version: "3"
+services:
+  pg:
+    image: postgres:15-alpine
+    container_name: inventory_vista_db
+    ports:
+      - 5432:5432
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=inventory_vista
+

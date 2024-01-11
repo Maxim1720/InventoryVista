@@ -1,0 +1,9 @@
+version: "3"
+services:
+  front:
+    build:
+      context: .
+    container_name: inventory_vista_frontend
+    ports:
+      - 3000:3000
+

@@ -1,0 +1,167 @@
+@startuml
+!theme mars
+actor User
+participant Frontend
+participant Backend
+database Database
+
+User -> Frontend: Открытие веб-сайта
+activate Frontend
+Frontend -> User: Главной страницы
+
+Frontend -> User: Выбор раздела \n(Продукты,\n Поставщики, \nСклады, \nПоставки)
+
+User -> Frontend: Переход на страницу \nПродукты
+
+Frontend -> User: Отображение страницы \nПродукты
+
+User -> Frontend: Выбор существующего продукта
+
+Frontend -> User: Отображение страницы продукту
+
+Frontend -> Backend: GET запрос данных о продукте
+activate Backend
+Backend -> Database: Запрос данных о продукте
+activate Database
+Database --> Backend: Возвращает данные о продукте
+deactivate Database
+Backend --> Frontend: Ответ на запрос продукта
+deactivate Backend
+User -> Frontend: Нажатие "Редактировать"
+Frontend -> User: Переход на страницу редактирования
+
+Frontend -> Backend: GET запрос данных о продукте
+activate Backend
+Backend -> Database: Запрос данных о продукте
+activate Database
+Database -> Backend: Возвращает данные о продукте
+deactivate Database
+Backend --> Frontend: Ответ на запрос продукта
+deactivate Backend
+
+Frontend -> User: Отображение формы редактирования
+
+User -> Frontend: Редактирование и отправка изменений
+
+Frontend -> Backend: PUT запрос на обновление данных
+activate Backend
+Backend -> Database: Обновление данных о продукте
+activate Database
+Database --> Backend: Подтверждение обновления
+deactivate Database
+Backend --> Frontend: Ответ с обновленными данными о продукте
+deactivate Backend
+Frontend -> User: Отображение результатов обновления
+
+User -> Frontend: Нажатие кнопки "Удалить"
+
+Frontend -> Backend: DELETE запрос \mна удаление продукта
+activate Backend
+Backend -> Database: Удаление продукта
+activate Database
+Database --> Backend: Подтверждение удаления
+deactivate Database
+Backend --> Frontend: Ответ с подтверждением удаления продукта
+deactivate Backend
+Frontend -> User: Отображение результатов удаления продукта
+
+User -> Frontend: нажатие кнопки "История"
+
+Frontend -> Backend: GET запрос истории изменений срока годности продукта
+activate Backend
+Backend -> Database: Запрос истории изменений срока годности
+activate Database
+Database --> Backend: Ответ с историей изменений
+deactivate Database
+Backend --> Frontend: Ответ от сервера \nс историей изменений
+deactivate Backend
+Frontend -> User: Отображение страницы с историей изменений
+
+User -> Frontend: Переход на страницу Склады
+Frontend -> User: Отображение страницы Склады
+
+User -> Frontend: Нажатие кнопки "Редактировать" склада
+Frontend -> User: Отображение формы редактирования склада
+User -> Frontend: Редактирование и отправка изменений на сервер
+Frontend -> Backend: PUT запрос на обновление данных склада
+activate Backend
+Backend -> Database: Обновление данных о складе
+activate Database
+Database --> Backend: Подтверждение обновления
+deactivate Database
+Backend --> Frontend: Ответ  с обновленными \nданными о складе
+deactivate Backend
+Frontend -> User: Отображение результатов обновления
+User -> Frontend: Нажатие "Удалить"
+Frontend -> Backend: DELETE запрос на удаление склада
+activate Backend
+Backend -> Database: Удаление склада
+activate Database
+Database --> Backend: Подтверждение удаления
+deactivate Database
+Backend --> Frontend: Ответ с подтверждением удаления склада
+deactivate Backend
+Frontend -> User: Отображение результатов удаления склада
+
+User -> Frontend: Переход на страницу Поставщики
+Frontend -> User: Отображение страницы Поставщики
+
+User -> Frontend: Нажатие кнопки "Редактировать" поставщика
+Frontend -> User: Отображение формы редактирования поставщика
+User -> Frontend: Редактирование и нажатие "Сохранить"
+Frontend -> Backend: PUT запрос на обновление \nданных поставщика
+activate Backend
+Backend -> Database: Обновление данных о поставщике
+activate Database
+Database --> Backend: Подтверждение обновления
+deactivate Database
+Backend --> Frontend: Ответ с обновленными данными \nо поставщике
+deactivate Backend
+Frontend -> User: Отображение результатов обновления
+User -> Frontend: Удаление поставщика, нажав "Удалить"
+Frontend -> Backend: DELETE запрос на удаление поставщика
+activate Backend
+Backend -> Database: Удаление поставщика
+activate Database
+Database --> Backend: Подтверждение удаления
+deactivate Database
+Backend --> Frontend: Ответ с подтверждением \nудаления поставщика
+deactivate Backend
+Frontend -> User: Отображение результатов \nудаления поставщика
+
+User -> Frontend: Переход на страницу Поставки
+Frontend -> User: Отображение страницы Поставки
+
+
+User -> Frontend: Нажатие кнопки "Редактировать"
+Frontend -> User: Отображение формы редактирования
+User -> Frontend: Редактирование и \nнажатие сохранить
+Frontend -> Backend: PUT запрос на обновление данных
+activate Backend
+Backend -> Database: Обновление данных
+activate Database
+Database --> Backend: Подтверждение обновления
+deactivate Database
+Backend --> Frontend: Ответ с обновленными данными о поставке
+deactivate Backend
+Frontend -> User: Отображение результатов обновления
+User -> Frontend: Удаление поставки, нажав "Удалить"
+Frontend -> Backend: DELETE запрос на удаление поставки
+activate Backend
+Backend -> Database: Удаление поставки
+activate Database
+Database --> Backend: Подтверждение удаления
+deactivate Database
+Backend --> Frontend: Ответ с подтверждением удаления поставки
+deactivate Backend
+Frontend -> User: Отображение результатов удаления поставки
+
+User -> Frontend: Нажатие \nна ссылку \n"О разработчике"
+
+Frontend -> User: Переход на страницу о разработчике
+
+User -> Frontend: Нажатие на иконку веб-сайта
+Frontend -> User: Переход на главную страницу
+
+deactivate Frontend
+@enduml
